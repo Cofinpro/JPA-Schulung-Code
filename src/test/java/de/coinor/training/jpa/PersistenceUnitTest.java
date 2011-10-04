@@ -15,7 +15,7 @@ import de.coinor.training.jpa.model.Book;
 import de.coinor.training.jpa.model.ISBN;
 import de.coinor.training.jpa.model.Publisher;
 
-public class MappingTest {
+public class PersistenceUnitTest {
 
 	@Test
 	public void testMapping() throws Exception {

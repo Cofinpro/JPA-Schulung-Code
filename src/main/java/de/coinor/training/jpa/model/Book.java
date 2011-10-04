@@ -3,7 +3,10 @@
  */
 package de.coinor.training.jpa.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -22,7 +25,12 @@ public class Book {
 	@Basic(optional=false)
 	private String title;
 	
-	private String author;
+	private ISBN isbn;
+	
+	private List<Author> authors = new ArrayList<Author>();
+	
+	/** every book must have a publisher */
+	private Publisher publisher;
 	
 	private int pages;
 	
@@ -39,47 +47,95 @@ public class Book {
 		
 	}
 	
-	public Long getId() {
-		return id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-	
-	public void setTitle(String title) {
+	public Book(String title) {
+		super();
 		this.title = title;
 	}
 
-	public String getAuthor() {
-		return author;
+
+	/**
+	 * @return the books authors as unmodifiable collection.
+	 */
+	public List<Author> getAuthors() {
+		return Collections.unmodifiableList(authors);
 	}
 	
-	public void setAuthor(String author) {
-		this.author = author;
+	/**
+	 * Add an author at a specific position to the author list.
+	 */
+	public void addAuthor(int position, Author author){
+		if (!authors.contains(author)){
+			authors.add(position, author);
+		}
+	}
+	
+	public void addAuthor(Author author){
+		if (!authors.contains(author)){
+			authors.add(author);
+		}
+	}
+	
+	public void removeAuthor(Author author){
+		authors.remove(author);
+	}
+	
+	/**
+	 * Delete all authors from the author list
+	 */
+	public void clearAuthors(){
+		authors.clear();
+	}
+
+	public Long getId() {
+		return id;
+	}
+	
+	public ISBN getIsbn() {
+		return isbn;
 	}
 	
 	public int getPages() {
 		return pages;
 	}
 	
-	public void setPages(int pages) {
-		this.pages = pages;
-	}
-
 	public double getPrice() {
 		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
 	}
 
 	public Date getPublished() {
 		return published;
 	}
 
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setIsbn(ISBN isbn) {
+		this.isbn = isbn;
+	}
+
+	public void setPages(int pages) {
+		this.pages = pages;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
 	public void setPublished(Date published) {
 		this.published = published;
 	}
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
 }
