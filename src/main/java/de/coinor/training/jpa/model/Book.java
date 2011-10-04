@@ -9,9 +9,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,11 +29,13 @@ public class Book {
 	@Basic(optional=false)
 	private String title;
 	
+	@OneToOne(cascade=CascadeType.ALL, optional=true)
 	private ISBN isbn;
 	
+	@ManyToMany(cascade={CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	private List<Author> authors = new ArrayList<Author>();
 	
-	/** every book must have a publisher */
+	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}, optional=false)
 	private Publisher publisher;
 	
 	private int pages;

@@ -10,7 +10,7 @@
 			<property name="javax.persistence.jdbc.user" value="user"/>
 			<property name="javax.persistence.jdbc.password" value="pwd"/>
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
-			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
 		</properties>
 	</persistence-unit>

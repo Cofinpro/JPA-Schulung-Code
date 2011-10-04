@@ -4,9 +4,11 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -21,6 +23,7 @@ public class Author {
 	
 	private String lastName;
 	
+	@ManyToMany(mappedBy="authors")
 	private Collection<Book> books = new HashSet<Book>();
 	
 	@Temporal(TemporalType.DATE)
@@ -34,6 +37,13 @@ public class Author {
 		return books;
 	}
 	
+	
+	public Author(String lastName, String firstName) {
+		super();
+		this.lastName = lastName;
+		this.firstName = firstName;
+	}
+
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
