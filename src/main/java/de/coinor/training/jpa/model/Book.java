@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.coinor.training.jpa;
+package de.coinor.training.jpa.model;
 
 import java.util.Date;
 
