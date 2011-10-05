@@ -62,5 +62,10 @@ public class Publisher {
 		book.setPublisher(null);
 	}
 	
+	@Override
+	public String toString() {
+		return "Publisher " + id + ": " + name;
+	}
+	
 
 }
