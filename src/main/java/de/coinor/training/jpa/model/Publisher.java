@@ -8,7 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -48,11 +47,20 @@ public class Publisher {
 	public Collection<Book> getBooks() {
 		return books;
 	}
-
-	public void setBooks(Collection<Book> books) {
-		this.books = books;
+	
+	public void addBook(Book book){
+		if (books.contains(book)) return;
+		
+		books.add(book);
+		book.setPublisher(this);
 	}
 	
+	public void removeBook(Book book){
+		if (!book.getPublisher().equals(this)) return;
+		
+		books.remove(book);
+		book.setPublisher(null);
+	}
 	
 
 }

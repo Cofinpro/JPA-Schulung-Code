@@ -1,9 +1,8 @@
 package de.coinor.training.jpa;
 
 import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 import static org.hamcrest.collection.IsCollectionContaining.*;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

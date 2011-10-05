@@ -1,10 +1,10 @@
 package de.coinor.training.jpa.model;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -34,7 +34,19 @@ public class Author {
 	}
 
 	public Collection<Book> getBooks() {
-		return books;
+		return Collections.unmodifiableCollection(books);
+	}
+	
+	public void addBook(Book book){
+		if (this.books.contains(book)) return;
+		
+		books.add(book);
+		book.addAuthor(this);
+	}
+	
+	public void removeBook(Book book){
+		books.remove(book);
+		book.removeAuthor(this);
 	}
 	
 	

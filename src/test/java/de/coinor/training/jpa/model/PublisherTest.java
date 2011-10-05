@@ -1,6 +1,8 @@
 package de.coinor.training.jpa.model;
 
-import static org.junit.Assert.fail;
+import static org.hamcrest.collection.IsCollectionContaining.hasItem;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
@@ -10,8 +12,12 @@ public class PublisherTest {
 
 	@Test
 	public void testAddingBooks(){
-		// Create a publisher and add a book to it
-		fail("Not implemented yet");
+		Book book = new Book("The Raven");
+		Publisher publisher = new Publisher("Nice Books Ltd.");
+		publisher.addBook(book);
+		
+		assertThat(publisher.getBooks(), hasItem(book));
+		assertThat(book.getPublisher(), is(equalTo(publisher)));
 	}
 
 }

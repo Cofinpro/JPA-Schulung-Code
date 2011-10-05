@@ -1,6 +1,7 @@
 package de.coinor.training.jpa.model;
 
 import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.collection.IsCollectionContaining.hasItem;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -16,9 +17,12 @@ public class BookTest {
 	}
 	
 	public void testAddingAuthor(){
-		// Create a book and add an author to it
-		fail("Not implemented yet");
+		Author author = new Author("Dickens", "Charles");
+		Book book = new Book("The Raven");
+		book.addAuthor(author);
 		
+		assertThat(book.getAuthors(), hasItem(author));
+		assertThat(author.getBooks(), hasItem(book));		
 	}
 
 }

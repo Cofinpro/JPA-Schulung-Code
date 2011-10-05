@@ -138,6 +138,7 @@ public class Book {
 
 	public void setPublisher(Publisher publisher) {
 		this.publisher = publisher;
+		publisher.addBook(this);
 	}
 
 	public void setTitle(String title) {
