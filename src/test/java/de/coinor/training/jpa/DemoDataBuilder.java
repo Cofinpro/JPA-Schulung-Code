@@ -2,9 +2,9 @@ package de.coinor.training.jpa;
 
 import javax.persistence.EntityManager;
 
-import de.coinor.training.jpa.model.Author;
-import de.coinor.training.jpa.model.Book;
-import de.coinor.training.jpa.model.Publisher;
+import de.cofinpro.training.jpa.model.Author;
+import de.cofinpro.training.jpa.model.Book;
+import de.cofinpro.training.jpa.model.Publisher;
 
 public class DemoDataBuilder {
 	

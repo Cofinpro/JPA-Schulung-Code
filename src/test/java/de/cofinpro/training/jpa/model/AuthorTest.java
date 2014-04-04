@@ -1,8 +1,7 @@
-package de.coinor.training.jpa.model;
+package de.cofinpro.training.jpa.model;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.collection.IsCollectionContaining.*;
 
 import org.junit.Test;
 
