@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.coinor.training.jpa;
+package de.cofinpro.training.jpa;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

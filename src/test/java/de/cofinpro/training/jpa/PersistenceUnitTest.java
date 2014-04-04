@@ -1,11 +1,11 @@
-package de.coinor.training.jpa;
+package de.cofinpro.training.jpa;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import org.junit.Test;
 
-import de.coinor.training.jpa.model.Book;
+import de.cofinpro.training.jpa.model.Book;
 
 public class PersistenceUnitTest {
 

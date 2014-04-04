@@ -5,10 +5,10 @@
 		<!--  add mapped classes here -->
 		
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/BookstoreDB;create=true"/>
-			<property name="javax.persistence.jdbc.user" value="user"/>
-			<property name="javax.persistence.jdbc.password" value="pwd"/>
-			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/Bookstore"/>
+			<property name="javax.persistence.jdbc.user" value="sa"/>
+			<property name="javax.persistence.jdbc.password" value=""/>
+			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
 		</properties>
 	</persistence-unit>
 </persistence>
