@@ -1,19 +1,18 @@
-package de.coinor.training.jpa;
+package de.cofinpro.training.jpa;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import de.cofinpro.training.jpa.model.Author;
+import de.cofinpro.training.jpa.model.Book;
+import de.cofinpro.training.jpa.model.ISBN;
+import de.cofinpro.training.jpa.model.Publisher;
+import org.junit.Test;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.metamodel.Metamodel;
 
-import org.junit.Test;
-
-import de.coinor.training.jpa.model.Author;
-import de.coinor.training.jpa.model.Book;
-import de.coinor.training.jpa.model.ISBN;
-import de.coinor.training.jpa.model.Publisher;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
 
 public class PersistenceUnitTest {
 

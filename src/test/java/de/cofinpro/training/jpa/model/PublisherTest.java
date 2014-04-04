@@ -1,4 +1,4 @@
-package de.coinor.training.jpa.model;
+package de.cofinpro.training.jpa.model;
 
 import static org.junit.Assert.fail;
 
