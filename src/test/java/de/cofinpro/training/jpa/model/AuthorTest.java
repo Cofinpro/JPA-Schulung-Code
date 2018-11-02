@@ -6,8 +6,8 @@ import org.junit.Test;
 
 public class AuthorTest {
 
-	@Test
-	public void testAddingBook(){
-		fail("Not implemented yet");
-	}
+    @Test
+    public void testAddingBook() {
+        fail("Not implemented yet");
+    }
 }

@@ -5,13 +5,12 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 
 
-
 public class PublisherTest {
 
-	@Test
-	public void testAddingBooks(){
-		// Create a publisher and add a book to it
-		fail("Not implemented yet");
-	}
+    @Test
+    public void testAddingBooks() {
+        // Create a publisher and add a book to it
+        fail("Not implemented yet");
+    }
 
 }

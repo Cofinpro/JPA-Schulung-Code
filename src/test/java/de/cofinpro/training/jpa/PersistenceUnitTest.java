@@ -16,15 +16,15 @@ import static org.junit.Assert.assertThat;
 
 public class PersistenceUnitTest {
 
-	@Test
-	public void testMapping() throws Exception {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Bookstore");
-		assertThat(emf.isOpen(), is(true));
-		
-		Metamodel metaModel = emf.getMetamodel();
-		assertThat(metaModel.entity(Author.class), notNullValue());
-		assertThat(metaModel.entity(ISBN.class), notNullValue());
-		assertThat(metaModel.entity(Book.class), notNullValue());
-		assertThat(metaModel.entity(Publisher.class), notNullValue());
-	}
+    @Test
+    public void testMapping() throws Exception {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Bookstore");
+        assertThat(emf.isOpen(), is(true));
+
+        Metamodel metaModel = emf.getMetamodel();
+        assertThat(metaModel.entity(Author.class), notNullValue());
+        assertThat(metaModel.entity(ISBN.class), notNullValue());
+        assertThat(metaModel.entity(Book.class), notNullValue());
+        assertThat(metaModel.entity(Publisher.class), notNullValue());
+    }
 }
