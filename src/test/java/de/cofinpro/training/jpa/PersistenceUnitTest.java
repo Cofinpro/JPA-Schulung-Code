@@ -9,12 +9,12 @@ import de.cofinpro.training.jpa.model.Book;
 
 public class PersistenceUnitTest {
 
-	@Test
-	public void test() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Bookstore");
-		
-		// Assert that Book.class has been mapped
-		emf.getMetamodel().entity(Book.class);
-	}
+    @Test
+    public void test() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Bookstore");
+
+        // Assert that Book.class has been mapped
+        emf.getMetamodel().entity(Book.class);
+    }
 
 }
