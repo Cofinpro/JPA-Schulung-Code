@@ -18,133 +18,133 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Book {
-	
-	@Id
-	@GeneratedValue
-	private Long id;
-	
-	@Basic(optional=false)
-	private String title;
-	
-	@OneToOne(cascade=CascadeType.ALL, optional=true)
-	private ISBN isbn;
-	
-	@ManyToMany(cascade={CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-	private List<Author> authors = new ArrayList<Author>();
-	
-	@ManyToOne(cascade={CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}, optional=false)
-	private Publisher publisher;
-	
-	private int pages;
-	
-	private double price;
-	
-	@Temporal(TemporalType.DATE)
-	private Date published;
-	
-	
-	/**
-	 * Default constructor for persistence
-	 */
-	public Book(){
-		
-	}
-	
-	public Book(String title) {
-		super();
-		this.title = title;
-	}
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Basic(optional = false)
+    private String title;
+
+    @OneToOne(cascade = CascadeType.ALL, optional = true)
+    private ISBN isbn;
+
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Author> authors = new ArrayList<Author>();
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, optional = false)
+    private Publisher publisher;
+
+    private int pages;
+
+    private double price;
+
+    @Temporal(TemporalType.DATE)
+    private Date published;
 
 
-	/**
-	 * @return the books authors as unmodifiable collection.
-	 */
-	public List<Author> getAuthors() {
-		return Collections.unmodifiableList(authors);
-	}
-	
-	/**
-	 * Add an author at a specific position to the author list.
-	 */
-	public void addAuthor(int position, Author author){
-		if (!authors.contains(author)){
-			authors.add(position, author);
-		}
-	}
-	
-	public void addAuthor(Author author){
-		if (!authors.contains(author)){
-			authors.add(author);
-		}
-	}
-	
-	public void removeAuthor(Author author){
-		authors.remove(author);
-	}
-	
-	/**
-	 * Delete all authors from the author list
-	 */
-	public void clearAuthors(){
-		authors.clear();
-	}
+    /**
+     * Default constructor for persistence
+     */
+    public Book() {
 
-	public Long getId() {
-		return id;
-	}
-	
-	public ISBN getIsbn() {
-		return isbn;
-	}
-	
-	public int getPages() {
-		return pages;
-	}
-	
-	public double getPrice() {
-		return price;
-	}
+    }
 
-	public Date getPublished() {
-		return published;
-	}
+    public Book(String title) {
+        super();
+        this.title = title;
+    }
 
-	public Publisher getPublisher() {
-		return publisher;
-	}
 
-	public String getTitle() {
-		return title;
-	}
+    /**
+     * @return the books authors as unmodifiable collection.
+     */
+    public List<Author> getAuthors() {
+        return Collections.unmodifiableList(authors);
+    }
 
-	public void setIsbn(ISBN isbn) {
-		this.isbn = isbn;
-	}
+    /**
+     * Add an author at a specific position to the author list.
+     */
+    public void addAuthor(int position, Author author) {
+        if (!authors.contains(author)) {
+            authors.add(position, author);
+        }
+    }
 
-	public void setPages(int pages) {
-		this.pages = pages;
-	}
+    public void addAuthor(Author author) {
+        if (!authors.contains(author)) {
+            authors.add(author);
+        }
+    }
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
+    public void removeAuthor(Author author) {
+        authors.remove(author);
+    }
 
-	public void setPublished(Date published) {
-		this.published = published;
-	}
+    /**
+     * Delete all authors from the author list
+     */
+    public void clearAuthors() {
+        authors.clear();
+    }
 
-	public void setPublisher(Publisher publisher) {
-		this.publisher = publisher;
-		publisher.addBook(this);
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public ISBN getIsbn() {
+        return isbn;
+    }
 
-	@Override
-	public String toString() {
-		return "Book " + id + ": " + title;
-	}
-	
+    public int getPages() {
+        return pages;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public Date getPublished() {
+        return published;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setIsbn(ISBN isbn) {
+        this.isbn = isbn;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setPublished(Date published) {
+        this.published = published;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+        publisher.addBook(this);
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return "Book " + id + ": " + title;
+    }
+
 }
