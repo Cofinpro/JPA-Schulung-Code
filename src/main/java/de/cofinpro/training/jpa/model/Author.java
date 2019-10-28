@@ -5,12 +5,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Author {
@@ -19,11 +15,13 @@ public class Author {
     @GeneratedValue
     private Long id;
 
+    @NotNull
     private String firstName;
 
+    @NotNull
     private String lastName;
 
-    @ManyToMany(mappedBy = "authors")
+    @ManyToMany(mappedBy = "authors", cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})
     private Collection<Book> books = new HashSet<Book>();
 
     @Temporal(TemporalType.DATE)

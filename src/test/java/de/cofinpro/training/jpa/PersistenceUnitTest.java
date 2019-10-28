@@ -4,19 +4,18 @@ import de.cofinpro.training.jpa.model.Author;
 import de.cofinpro.training.jpa.model.Book;
 import de.cofinpro.training.jpa.model.ISBN;
 import de.cofinpro.training.jpa.model.Publisher;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.RollbackException;
 import javax.persistence.metamodel.Metamodel;
+import javax.validation.ValidationException;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PersistenceUnitTest {
 
@@ -44,17 +43,25 @@ class PersistenceUnitTest {
         assertThat(metaModel.entity(Publisher.class), notNullValue());
     }
 
-    //
-    // Try to make these tests pass.
-    //
+    @Test
+    void testValidationIntegration() {
+        Author author = new Author();
+        final RollbackException rollbackException = assertThrows(RollbackException.class, () -> {
+            em.getTransaction().begin();
+            em.persist(author);
+            em.getTransaction().commit();
+        });
+        assertThat(rollbackException.getCause(), is(instanceOf(ValidationException.class)));
+    }
 
     @Test
-    @Tag("exercise")
     void testPersistAuthor() {
         // This test is broken. Find out what's missing
 
         Author author = new Author("Verne", "Jules");
+        em.getTransaction().begin();
         em.persist(author);
+        em.getTransaction().commit();
 
         assertThat(author.getId(), is(notNullValue()));
         em.clear();
@@ -63,16 +70,21 @@ class PersistenceUnitTest {
     }
 
     @Test
-    @Tag("exercise")
     void testUpdateAuthor() {
-        Author author = new Author("Clancy", "Tom");
+        Author author = new Author("Hanks", "Tom");
         // save it
+        em.getTransaction().begin();
+        em.persist(author);
+        em.getTransaction().commit();
 
         assertThat(author.getId(), is(notNullValue()));
-        //oops
-        author.setLastName("Hanks");
-        // save it again.
 
+        //oops
+        em.getTransaction().begin();
+        author = em.merge(author);
+        author.setLastName("Clancy");
+        em.getTransaction().commit();
+        // save it again
 
         // reload the author, discarding all local changes
         em.refresh(author);
@@ -80,14 +92,30 @@ class PersistenceUnitTest {
     }
 
     @Test
-    @Tag("exercise")
     void testRollback() {
         // Make a change and then roll it back. Make sure the change has been discarded
-        fail("Not implemented yet.");
+        Author author = new Author("Hanks", "Tom");
+        // save it
+        em.getTransaction().begin();
+        em.persist(author);
+        em.getTransaction().commit();
+
+        assertThat(author.getId(), is(notNullValue()));
+
+        //oops
+        em.getTransaction().begin();
+        author = em.merge(author);
+        author.setLastName("Clancy");
+        em.getTransaction().rollback();
+        // save it again
+
+        // reload the author, discarding all local changes
+        author = em.merge(author);
+        em.refresh(author);
+        assertThat(author.getLastName(), is(equalTo("Hanks")));
     }
 
     @Test
-    @Tag("exercise")
     void testSavingAuthorWithBook() {
         Author author = new Author("Verne", "Jules");
         Book book = new Book("Around the world in 80 days");
