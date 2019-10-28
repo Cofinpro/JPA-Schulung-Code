@@ -1,5 +1,8 @@
 package de.cofinpro.training.jpa.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -10,8 +13,7 @@ public class Book {
     private String author;
     private int pages;
     private double price;
-    private Date published;
-
+    private LocalDate published;
 
     public Book(String title) {
         super();
@@ -50,11 +52,11 @@ public class Book {
         this.price = price;
     }
 
-    public Date getPublished() {
+    public LocalDate getPublished() {
         return published;
     }
 
-    public void setPublished(Date published) {
+    public void setPublished(LocalDate published) {
         this.published = published;
     }
 }

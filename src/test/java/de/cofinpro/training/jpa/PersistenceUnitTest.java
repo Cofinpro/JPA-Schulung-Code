@@ -3,18 +3,25 @@ package de.cofinpro.training.jpa;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.junit.Test;
-
 import de.cofinpro.training.jpa.model.Book;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
-public class PersistenceUnitTest {
+import static org.junit.jupiter.api.Assertions.fail;
+
+class PersistenceUnitTest {
 
     @Test
-    public void test() {
+    @Tag("exercise")
+    void test() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Bookstore");
 
         // Assert that Book.class has been mapped
-        emf.getMetamodel().entity(Book.class);
+        try {
+            emf.getMetamodel().entity(Book.class);
+        } catch (IllegalArgumentException e) {
+            fail("Book is not an entity", e);
+        }
     }
 
 }
