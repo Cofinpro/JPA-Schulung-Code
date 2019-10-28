@@ -4,9 +4,10 @@ import de.cofinpro.training.jpa.model.Author;
 import de.cofinpro.training.jpa.model.Book;
 import de.cofinpro.training.jpa.model.ISBN;
 import de.cofinpro.training.jpa.model.Publisher;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,25 +16,25 @@ import javax.persistence.metamodel.Metamodel;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
-public class PersistenceUnitTest {
+class PersistenceUnitTest {
 
     private static EntityManagerFactory emf;
     private EntityManager em;
 
-    @BeforeClass
-    public static void initEntityManagerFactory() {
+    @BeforeAll
+    static void initEntityManagerFactory() {
         emf = Persistence.createEntityManagerFactory("Bookstore");
     }
 
-    @Before
-    public void initEntityManager() {
+    @BeforeEach
+    void initEntityManager() {
         em = emf.createEntityManager();
     }
 
     @Test
-    public void testMapping() throws Exception {
+    void testMapping() {
         assertThat(emf.isOpen(), is(true));
 
         Metamodel metaModel = emf.getMetamodel();
@@ -48,7 +49,8 @@ public class PersistenceUnitTest {
     //
 
     @Test
-    public void testPersistAuthor() {
+    @Tag("exercise")
+    void testPersistAuthor() {
         // This test is broken. Find out what's missing
 
         Author author = new Author("Verne", "Jules");
@@ -58,13 +60,14 @@ public class PersistenceUnitTest {
     }
 
     @Test
-    public void testUpdateAuthor() {
-        Author author = new Author("Hanks", "Tom");
+    @Tag("exercise")
+    void testUpdateAuthor() {
+        Author author = new Author("Clancy", "Tom");
         // save it
 
         assertThat(author.getId(), is(notNullValue()));
         //oops
-        author.setLastName("Clancy");
+        author.setLastName("Hanks");
         // save it again.
 
 
@@ -74,13 +77,15 @@ public class PersistenceUnitTest {
     }
 
     @Test
-    public void testRollback() {
+    @Tag("exercise")
+    void testRollback() {
         // Make a change and then roll it back. Make sure the change has been discarded
         fail("Not implemented yet.");
     }
 
     @Test
-    public void testSavingAuthorWithBook() {
+    @Tag("exercise")
+    void testSavingAuthorWithBook() {
         Author author = new Author("Verne", "Jules");
         Book book = new Book("Around the world in 80 days");
         book.setPublisher(new Publisher("NiceBooks Ltd."));
