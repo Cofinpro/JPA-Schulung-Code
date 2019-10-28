@@ -1,14 +1,15 @@
 package de.cofinpro.training.jpa.model;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class AuthorTest {
+class AuthorTest {
 
     @Test
-    public void testAddingBook() {
+    void testAddingBook() {
         Author author = new Author("Dickens", "Charles");
         Book book = new Book("The Raven");
         author.addBook(book);
@@ -17,10 +18,12 @@ public class AuthorTest {
         assertThat(author.getBooks(), hasItem(book));
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void testProtectedBookCollection() {
+    @Test
+    void testProtectedBookCollection() {
         Author author = new Author("Dickens", "Charles");
         Book book = new Book("The Raven");
-        author.getBooks().add(book);
+        assertThrows(UnsupportedOperationException.class, () ->
+                author.getBooks().add(book)
+        );
     }
 }

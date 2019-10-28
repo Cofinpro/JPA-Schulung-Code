@@ -1,6 +1,3 @@
-/**
- *
- */
 package de.cofinpro.training.jpa;
 
 import javax.persistence.EntityManagerFactory;
@@ -11,17 +8,14 @@ import javax.persistence.Persistence;
  */
 public class BookstoreApp {
 
-    EntityManagerFactory emFactory;
+    private EntityManagerFactory emFactory;
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
         new BookstoreApp();
 
     }
 
-    public BookstoreApp() {
+    private BookstoreApp() {
         emFactory = Persistence.createEntityManagerFactory("Bookstore");
     }
 

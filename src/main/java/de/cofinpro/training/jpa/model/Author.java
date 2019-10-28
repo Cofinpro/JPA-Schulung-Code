@@ -38,7 +38,9 @@ public class Author {
     }
 
     public void addBook(Book book) {
-        if (this.books.contains(book)) return;
+        if (this.books.contains(book)) {
+            return;
+        }
 
         books.add(book);
         book.addAuthor(this);

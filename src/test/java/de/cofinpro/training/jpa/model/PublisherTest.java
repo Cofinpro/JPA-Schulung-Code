@@ -1,15 +1,14 @@
 package de.cofinpro.training.jpa.model;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
-
-public class PublisherTest {
+class PublisherTest {
 
     @Test
-    public void testAddingBooks() {
+    void testAddingBooks() {
         Book book = new Book("The Raven");
         Publisher publisher = new Publisher("Nice Books Ltd.");
         publisher.addBook(book);
