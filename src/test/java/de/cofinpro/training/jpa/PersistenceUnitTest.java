@@ -57,6 +57,9 @@ class PersistenceUnitTest {
         em.persist(author);
 
         assertThat(author.getId(), is(notNullValue()));
+        em.clear();
+
+        assertThat(em.find(Author.class, author.getId()), is(notNullValue()));
     }
 
     @Test
@@ -89,15 +92,11 @@ class PersistenceUnitTest {
         Author author = new Author("Verne", "Jules");
         Book book = new Book("Around the world in 80 days");
         book.setPublisher(new Publisher("NiceBooks Ltd."));
-        author.getBooks().add(book);
+        author.addBook(book);
 
         em.getTransaction().begin();
         em.persist(author);
-        em.persist(book);
         em.getTransaction().commit();
-
-        assertThat(book.getId(), is(notNullValue()));
-        assertThat(author.getId(), is(notNullValue()));
 
         em.refresh(author);
         //What went wrong here?
