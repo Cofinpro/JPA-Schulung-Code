@@ -1,6 +1,3 @@
-/**
- *
- */
 package de.cofinpro.training.jpa;
 
 import javax.persistence.EntityManagerFactory;

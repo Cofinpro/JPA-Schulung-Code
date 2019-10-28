@@ -18,7 +18,7 @@ class BookTest {
 
     @Test
     @Tag("exercise")
-    public void testAddingAuthor() {
+    void testAddingAuthor() {
         // Create a book and add an author to it
         fail("Not implemented yet");
     }

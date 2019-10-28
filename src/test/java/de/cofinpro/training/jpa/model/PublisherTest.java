@@ -1,14 +1,15 @@
 package de.cofinpro.training.jpa.model;
 
-import static org.junit.Assert.fail;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.fail;
 
-
-public class PublisherTest {
+class PublisherTest {
 
     @Test
-    public void testAddingBooks() {
+    @Tag("exercise")
+    void testAddingBooks() {
         // Create a publisher and add a book to it
         fail("Not implemented yet");
     }

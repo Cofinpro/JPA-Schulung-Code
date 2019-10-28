@@ -1,13 +1,15 @@
 package de.cofinpro.training.jpa.model;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.fail;
 
-public class AuthorTest {
+class AuthorTest {
 
     @Test
-    public void testAddingBook() {
+    @Tag("exercise")
+    void testAddingBook() {
         fail("Not implemented yet");
     }
 }
